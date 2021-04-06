@@ -25,7 +25,7 @@
             $_SESSION["userAdded"]=0;
         }
         ?>
-        <form action="db/action-signin.php">
+        <form action="db/action-signin.php" class="signForm">
             <label for="username">Username
                 <input type="text" name="username" id="username">
             </label>

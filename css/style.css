@@ -3,18 +3,23 @@
     flex-direction: column;
     align-items: center;
 }
-/* .signupForm{
+.signForm{
     display: flex;
     flex-direction: column;
     align-content: center;
-} */
+}
 label{
     width: 100%;
+    margin: 10px 0px 10px 0px;
     text-align: center;
 }
 input{
     width: 100%;
-    margin: 10px 0px 10px 0px;
+}
+input[type="submit"]{
+    margin-top:10px;
+    width: 50%;
+    align-self: center;
 }
 .alert{
     width: 60%;

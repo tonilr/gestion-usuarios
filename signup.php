@@ -29,7 +29,7 @@
             $_SESSION["errorAdding"]=0;
         }
         ?>
-        <form action="db/action-signup.php" method="post" class="signupForm">
+        <form action="db/action-signup.php" method="post" class="signForm">
             <label for="username">User Name
                 <input type="text" name="username" id="username">
             </label>
