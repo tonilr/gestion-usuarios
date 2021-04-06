@@ -1,0 +1,24 @@
+.mainContent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/* .signupForm{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+} */
+label{
+    width: 100%;
+    text-align: center;
+}
+input{
+    width: 100%;
+    margin: 10px 0px 10px 0px;
+}
+.alert{
+    width: 60%;
+    background-color: rgb(253, 169, 169);
+    font-size: larger;
+    text-align: center;
+}
