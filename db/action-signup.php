@@ -39,6 +39,5 @@ if (!isset($_POST["username"]) or $_POST["username"]==NULL or !isset($_POST["ema
             header ("Location: ../signup.php");
         }
     }
-
 }
 ?>
