@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (isset($_COOKIE["username"])){
+    header ("Location: userPanel.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +16,6 @@
 </head>
 <body id="mainPage">
     <?php
-    session_start();
     if (isset($_SESSION["userAdded"]) and $_SESSION["userAdded"]==1){
         echo "<p class='confirmation'>Account created correctly!</p>";
         $_SESSION["userAdded"]=0;
@@ -19,11 +24,15 @@
         echo "<p class='alert'>There was an error adding the user account!</p>";
         $_SESSION["errorAdding"]=0;
     }
+    if (isset($_SESSION["badCredentials"]) and $_SESSION["badCredentials"]==1){
+        echo "<p class='alert'>Username or password incorrect</p>";
+        $_SESSION["badCredentials"]=0;
+    }
     ?>
     <section class="mainPageContent">
         <h1>Sign in with your account</h1>
         
-        <form action="db/action-signin.php" class="signForm">
+        <form action="db/action-signin.php" class="signForm" method="POST">
             <label for="username">Username</label>
             <input type="text" name="username" id="username" required>
             <label for="password">Password</label>
@@ -36,6 +45,5 @@
         </form>
     <p>Don't have an account? Sign up <a href="signup.php">here</a></p>
     </section>
-
 </body>
 </html>

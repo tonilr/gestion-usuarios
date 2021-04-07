@@ -18,23 +18,16 @@ if ($userpassword!=$userpassword2){
 }
 //Check if one of the fields is not valid
 if($username!=$_POST["username"] or $email!=$_POST["email"] or $name!=$_POST["name"]){
-    $_SESSION["fieldsError"]=1;
+    $_SESSION["fieldError"]=1;
     header ("Location: ../signup.php");
 }else{
-    //Conection to the database
-    $server="localhost";
-    $user="project_nascor";
-    $password="zXd)JX]rMHCgNyu0";
-    $bbdd="project_nascor";
-    $table="users";
-    //Query
-    $sql="INSERT INTO $table VALUES(NULL, '$username', '$email', '$name', '$userpassword', 1, current_timestamp())";
-    //Connection
-    $conn = new mysqli($server, $user, $password, $bbdd);
-    //Check the connection
-    if ($conn->connect_error){
-        return "Connection error: $conn->connect_error";
+    include "databaseConnection.php";
+    $conn=databaseConnection();
+    if ($_SESSION["connectionError"]==1){
+        header ("Location: ../signup.php");
     }
+    //Query
+    $sql="INSERT INTO users VALUES(NULL, '$username', '$email', '$name', '$userpassword', 1, current_timestamp())";
     //Query to insert new user
     if ($conn->query($sql)){
         $conn->close();
@@ -42,6 +35,7 @@ if($username!=$_POST["username"] or $email!=$_POST["email"] or $name!=$_POST["na
         $_SESSION["errorAdding"]=0;
         header ("Location: ../");
     }else{
+        $conn->close();
         $_SESSION["errorAdding"]=1;
         $_SESSION["userAdded"]=0;
         header ("Location: ../signup.php");

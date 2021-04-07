@@ -26,6 +26,27 @@ body{
     flex-direction: column;
     align-content: center;
 }
+.logoutForm{
+    /* position: absolute; */
+    /* right: 20px; */
+    /* top: 20px; */
+    margin-top: 50px;
+}
+.logoutForm>input[type="submit"]{
+    padding: 10px;
+    background-color: rgb(255, 191, 191);
+    border: 1px solid rgb(112, 112, 112);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.logoutForm>input[type="submit"]:hover{
+    background-color: lightcoral;
+    transition: 0.5s;
+}
+.userPanel{
+    width: 80%;
+}
 label{
     /* width: 100%; */
     margin: 10px 0px 10px 0px;
@@ -37,11 +58,11 @@ input[type="text"],input[type="password"]{
     height: 22px;
     margin-bottom: 20px;
 }
-input[type="submit"]{
+/* input[type="submit"]{
     margin-top:20px;
     width: 150px;
     align-self: center;
-}
+} */
 .alert{
     width: 60%;
     background-color: rgb(253, 169, 169);
@@ -59,4 +80,11 @@ input[type="submit"]{
     justify-content: center;
     align-items: center;
     margin-top: -25px;
+}
+.boton{
+    margin:20px;
+    width: 150px;
+    align-self: center;
+    padding:5px 10px 5px 10px;
+    border: 1px solid black;
 }

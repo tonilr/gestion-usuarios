@@ -15,13 +15,17 @@
         echo "<p class='alert'>You must fill all the fields in the form</p>";
         $_SESSION["fieldMissing"]=0;
     }
-    if (isset($_SESSION["fieldsError"]) and $_SESSION["fieldsError"]==1){
-        echo "<p class='alert'>You have entered an invalid format in one field</p>";
-        $_SESSION["fieldsError"]=0;
+    if (isset($_SESSION["fieldError"]) and $_SESSION["fieldError"]==1){
+        echo "<p class='alert'>You have entered an invalid format in one or more fields</p>";
+        $_SESSION["fieldError"]=0;
     }
     if (isset($_SESSION["passwordError"]) and $_SESSION["passwordError"]==1){
         echo "<p class='alert'>The passwords don't match</p>";
         $_SESSION["passwordError"]=0;
+    }
+    if (isset($_SESSION["connectionError"]) and $_SESSION["connectionError"]==1){
+        echo "<p class='alert'>There was an error creating the account</p>";
+        $_SESSION["connectionError"]=0;
     }
     ?>
     <section class="mainContent">
@@ -43,8 +47,9 @@
                 <input type="checkbox" name="togglePassword" onclick="togglepasswordsignup()">
                 <label for="togglePassword">Show passwords</label>
             </div>
-            <input type="submit" class="boton">
+            <input type="submit" class="boton" value="Send">
         </form>
+        <a href="index.php" class="boton">Go back</a>
     </section>
 </body>
 </html>
