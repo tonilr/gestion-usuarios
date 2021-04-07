@@ -1,7 +1,25 @@
-.mainContent{
+body{
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+}
+.mainContent{
+    width: 600px;
+    text-align: center;
+}
+.mainPageContent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgb(60, 60, 60);
+    border-radius: 3px;
+    padding: 40px 20px 40px 20px;
+    background-color: ghostwhite;
+}
+#mainPage{
+    height: 100vh;
 }
 .signForm{
     display: flex;
@@ -9,16 +27,19 @@
     align-content: center;
 }
 label{
-    width: 100%;
+    /* width: 100%; */
     margin: 10px 0px 10px 0px;
     text-align: center;
 }
-input{
+input[type="text"],input[type="password"]{
     width: 100%;
+    text-align: center;
+    height: 22px;
+    margin-bottom: 20px;
 }
 input[type="submit"]{
-    margin-top:10px;
-    width: 50%;
+    margin-top:20px;
+    width: 150px;
     align-self: center;
 }
 .alert{
@@ -26,4 +47,16 @@ input[type="submit"]{
     background-color: rgb(253, 169, 169);
     font-size: larger;
     text-align: center;
+}
+.confirmation{
+    width: 60%;
+    background-color: rgb(207, 253, 169);
+    font-size: larger;
+    text-align: center;
+}
+#togglePassword{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -25px;
 }
