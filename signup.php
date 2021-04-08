@@ -1,3 +1,22 @@
+<?php
+session_start();
+if (isset($_SESSION["fieldMissing"]) and $_SESSION["fieldMissing"]==1){
+    echo "<p class='alert'>You must fill all the fields in the form</p>";
+    $_SESSION["fieldMissing"]=0;
+}
+if (isset($_SESSION["fieldError"]) and $_SESSION["fieldError"]==1){
+    echo "<p class='alert'>You have entered an invalid format in one or more fields</p>";
+    $_SESSION["fieldError"]=0;
+}
+if (isset($_SESSION["passwordError"]) and $_SESSION["passwordError"]==1){
+    echo "<p class='alert'>The passwords don't match</p>";
+    $_SESSION["passwordError"]=0;
+}
+if (isset($_SESSION["connectionError"]) and $_SESSION["connectionError"]==1){
+    echo "<p class='alert'>There was an error creating the account</p>";
+    $_SESSION["connectionError"]=0;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,25 +31,6 @@
     <title>Sign Up</title>
 </head>
 <body>
-    <?php
-    session_start();
-    if (isset($_SESSION["fieldMissing"]) and $_SESSION["fieldMissing"]==1){
-        echo "<p class='alert'>You must fill all the fields in the form</p>";
-        $_SESSION["fieldMissing"]=0;
-    }
-    if (isset($_SESSION["fieldError"]) and $_SESSION["fieldError"]==1){
-        echo "<p class='alert'>You have entered an invalid format in one or more fields</p>";
-        $_SESSION["fieldError"]=0;
-    }
-    if (isset($_SESSION["passwordError"]) and $_SESSION["passwordError"]==1){
-        echo "<p class='alert'>The passwords don't match</p>";
-        $_SESSION["passwordError"]=0;
-    }
-    if (isset($_SESSION["connectionError"]) and $_SESSION["connectionError"]==1){
-        echo "<p class='alert'>There was an error creating the account</p>";
-        $_SESSION["connectionError"]=0;
-    }
-    ?>
     <section class="mainContent">
         <h1>Create an account</h1>
         

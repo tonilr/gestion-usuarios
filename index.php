@@ -4,6 +4,22 @@ if (isset($_COOKIE["userid"])){
     header ("Location: userPanel.php");
     die();
 }
+if (isset($_SESSION["userAdded"]) and $_SESSION["userAdded"]==1){
+    echo "<p class='confirmation'>Account created correctly!</p>";
+    $_SESSION["userAdded"]=0;
+}
+if (isset($_SESSION["errorAdding"]) and $_SESSION["errorAdding"]==1){
+    echo "<p class='alert'>There was an error adding the user account!</p>";
+    $_SESSION["errorAdding"]=0;
+}
+if (isset($_SESSION["badCredentials"]) and $_SESSION["badCredentials"]==1){
+    echo "<p class='alert'>Username or password incorrect</p>";
+    $_SESSION["badCredentials"]=0;
+}
+if (isset($_SESSION["accountDeleted"]) and $_SESSION["accountDeleted"]==1){
+    echo "<p class='alert'>Your account has been deleted</p>";
+    $_SESSION["accountDeleted"]=0;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,24 +35,6 @@ if (isset($_COOKIE["userid"])){
     <title>Users Managment</title>
 </head>
 <body id="mainPage">
-    <?php
-    if (isset($_SESSION["userAdded"]) and $_SESSION["userAdded"]==1){
-        echo "<p class='confirmation'>Account created correctly!</p>";
-        $_SESSION["userAdded"]=0;
-    }
-    if (isset($_SESSION["errorAdding"]) and $_SESSION["errorAdding"]==1){
-        echo "<p class='alert'>There was an error adding the user account!</p>";
-        $_SESSION["errorAdding"]=0;
-    }
-    if (isset($_SESSION["badCredentials"]) and $_SESSION["badCredentials"]==1){
-        echo "<p class='alert'>Username or password incorrect</p>";
-        $_SESSION["badCredentials"]=0;
-    }
-    if (isset($_SESSION["accountDeleted"]) and $_SESSION["accountDeleted"]==1){
-        echo "<p class='alert'>Your account has been deleted</p>";
-        $_SESSION["accountDeleted"]=0;
-    }
-    ?>
     <section class="mainPageContent">
         <h1>Sign in with your account</h1>
         

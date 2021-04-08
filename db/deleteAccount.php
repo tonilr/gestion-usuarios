@@ -1,13 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="img/favicon.png" rel="icon" type="image/png"/>
-    <link rel="stylesheet" href="../css/style.css">
-    <title>Delete account</title>
-</head>
 <?php
 session_start();
 if (!isset($_COOKIE["userid"])){
@@ -49,6 +39,17 @@ if(isset($_POST["password"]) and $_POST["password"]!=NULL){
     // echo $data["password"];
 }
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="img/favicon.png" rel="icon" type="image/png"/>
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Delete account</title>
+</head>
+
 <body>
     <h1>Delete account</h1>
     <h3>Are you shure you want to delete your account? This action cannot be undone.</h3>
