@@ -13,8 +13,8 @@ function databaseConnection(){
         $_SESSION["connectionError"]=1;
         return;
     }else{
-        $_SESSION["connectionError"]=0;
         return $conn;
     }
 }
+
 ?>

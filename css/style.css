@@ -1,4 +1,5 @@
 body{
+    font-family: 'Montserrat', sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -44,9 +45,9 @@ body{
     background-color: lightcoral;
     transition: 0.5s;
 }
-.userPanel{
+/* .userPanel{
     width: 80%;
-}
+} */
 label{
     /* width: 100%; */
     margin: 10px 0px 10px 0px;
@@ -86,5 +87,8 @@ input[type="text"],input[type="password"]{
     width: 150px;
     align-self: center;
     padding:5px 10px 5px 10px;
-    border: 1px solid black;
+    border: 1px solid rgb(61, 61, 61);
+    border-radius: 5px;
+    background-color: snow;
+    color: green;
 }
