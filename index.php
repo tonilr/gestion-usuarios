@@ -2,6 +2,7 @@
 session_start();
 if (isset($_COOKIE["userid"])){
     header ("Location: userPanel.php");
+    die();
 }
 ?>
 <!DOCTYPE html>

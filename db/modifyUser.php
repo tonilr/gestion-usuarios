@@ -3,10 +3,12 @@ session_start();
 //Check if we have a cookie with the user id
 if (!isset($_COOKIE["userid"])){
     header ("Location: index.php");
+    die();
 }
 if (/* !isset($_POST["username"]) or $_POST["username"]==NULL or  */!isset($_POST["email"]) or $_POST["email"]==NULL or !isset($_POST["name"]) or $_POST["name"]==NULL or !isset($_POST["actualpass"]) or $_POST["actualpass"]==NULL){
     $_SESSION["fieldMissing"]=1;
     header ("Location: ../userPanel.php");
+    die();
 }else{
     //Database connection
     include "databaseConnection.php";
@@ -31,6 +33,7 @@ if (/* !isset($_POST["username"]) or $_POST["username"]==NULL or  */!isset($_POS
         $_SESSION["actualpasswordError"]=1;
         // echo "password error";
         header ("Location: ../userPanel.php");
+        die();
     }
     //Check if the user wants to change the password
     if (isset($_POST["newpass1"]) and $_POST["newpass1"]!=NULL and isset($_POST["newpass2"]) and $_POST["newpass2"]!=NULL){
@@ -40,6 +43,7 @@ if (/* !isset($_POST["username"]) or $_POST["username"]==NULL or  */!isset($_POS
         if($newpass!=$newpass2){
             $_SESSION["passwordsMissmatch"]=1;
             header ("Location: ../userPanel.php");
+            die();
         }else{
             //Query to update the data
             $sql="UPDATE users set `email`='$newemail',`name`='$newname',`password`='$newpass' WHERE `id`='$userid'";
@@ -47,6 +51,7 @@ if (/* !isset($_POST["username"]) or $_POST["username"]==NULL or  */!isset($_POS
             // echo "Info with passwords changed";
             $_SESSION["dataChanged"]=1;
             header ("Location: ../userPanel.php");
+            die();
         }
     }
     //Change the data without changing the password
@@ -54,6 +59,7 @@ if (/* !isset($_POST["username"]) or $_POST["username"]==NULL or  */!isset($_POS
     $conn->query($sql);
     $_SESSION["dataChanged"]=1;
     header ("Location: ../userPanel.php");
+    die();
     // echo "info changed";
 }
 ?>

@@ -11,12 +11,15 @@ if ($result->num_rows>0){
     if ($data["password"]==$password){
         setcookie("userid",$data["id"],time()+(60*60*24*365),"/");
         header ("Location: ../");
+        die();
     }else{
         $_SESSION["badCredentials"]=1;
         header ("Location: ../");
+        die();
     }
 }else{
     $_SESSION["badCredentials"]=1;
     header ("Location: ../");
+    die();
 }
 ?>

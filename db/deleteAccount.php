@@ -1,7 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="img/favicon.png" rel="icon" type="image/png"/>
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Delete account</title>
+</head>
 <?php
 session_start();
 if (!isset($_COOKIE["userid"])){
     header ("Location: ../index.php");
+    die();
 }
 if(isset($_SESSION["badDeletePassword"]) and $_SESSION["badDeletePassword"]==1){
     echo "<p class='alert'>You're password is not correct<p>";
@@ -28,23 +39,16 @@ if(isset($_POST["password"]) and $_POST["password"]!=NULL){
         setcookie("userid","",time()-3600,"/");
         $_SESSION["accountDeleted"]=1;
         header ("Location: ../index.php");
+        die();
     }else{
         //Set the session variable and reload de page
         $_SESSION["badDeletePassword"]=1;
         header ("Location: deleteAccount.php");
+        die();
     }
     // echo $data["password"];
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style.css">
-    <title>Delete account</title>
-</head>
 <body>
     <h1>Delete account</h1>
     <h3>Are you shure you want to delete your account? This action cannot be undone.</h3>
