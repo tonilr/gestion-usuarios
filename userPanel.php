@@ -77,6 +77,9 @@ if ($result->num_rows>0){
         <input type="password" name="actualpass" id="actualpass" required>
         <input type="submit" value="Modify profile" class="boton">
     </form>
+    <form action="db/deleteAccount.php" method="POST">
+        <input type="submit" value="Delete account"  class="botonDelete">
+    </form>
     <form action="db/logout.php" method="POST" class="logoutForm">
         <input type="submit" value="Logout">
     </form>

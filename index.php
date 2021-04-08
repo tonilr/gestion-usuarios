@@ -31,6 +31,10 @@ if (isset($_COOKIE["userid"])){
         echo "<p class='alert'>Username or password incorrect</p>";
         $_SESSION["badCredentials"]=0;
     }
+    if (isset($_SESSION["accountDeleted"]) and $_SESSION["accountDeleted"]==1){
+        echo "<p class='alert'>Your account has been deleted</p>";
+        $_SESSION["accountDeleted"]=0;
+    }
     ?>
     <section class="mainPageContent">
         <h1>Sign in with your account</h1>
