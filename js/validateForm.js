@@ -11,12 +11,36 @@ function validate_username(){
 
 //Check if email is empty
 function validate_email(){
+	// console.log(String.fromCharCode(46));
 	let email = document.getElementById("email").value;
 	if (email == "") {
 		document.getElementById("email_warning").innerHTML = "Email is necessary";
 	}else{
-		document.getElementById("email_warning").innerHTML = "";
-		return true;
+		//Check if the email has a valid format
+		let characters = email.split("");
+		// console.log(characters);
+		// console.log(characters.length);
+		let at = 0;
+		let dot = 0;
+		//Check if the email has an "@" not followed by a "."
+		for(n=0;n<characters.length;n++){
+			if(characters[n] == "@" && characters[n+1]!="."){
+				at++;
+				// console.log(at);
+			}
+		}
+		//Check 
+		if(characters[characters.length-4] == String.fromCharCode(46) || characters[characters.length-3] == String.fromCharCode(46) ){
+			// console.log("dot");
+			dot++;
+		}
+		// console.log(at);
+		// console.log(dot);
+		if (at==1 && dot==1){
+			document.getElementById("email_warning").innerHTML = "";
+		}else{
+			document.getElementById("email_warning").innerHTML = "Your email is not valid";
+		}
 	}
 }
 
