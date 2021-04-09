@@ -35,7 +35,7 @@ if (isset($_SESSION["accountDeleted"]) and $_SESSION["accountDeleted"]==1){
     <title>Users Managment</title>
 </head>
 <body id="mainPage">
-    <section class="mainPageContent">
+    <section class="mainContent">
         <h1>Sign in with your account</h1>
         
         <form action="db/action-signin.php" class="signForm" method="POST">

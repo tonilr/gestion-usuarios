@@ -30,6 +30,7 @@ if($username!=$_POST["username"] or $email!=$_POST["email"] or $name!=$_POST["na
         header ("Location: ../signup.php");
         die();
     }
+    $userpassword=password_hash($_POST["password1"],PASSWORD_DEFAULT);
     //Query
     $sql="INSERT INTO users VALUES(NULL, '$username', '$email', '$name', '$userpassword', 1, current_timestamp())";
     //Query to insert new user

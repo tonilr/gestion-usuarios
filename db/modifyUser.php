@@ -29,7 +29,7 @@ if (/* !isset($_POST["username"]) or $_POST["username"]==NULL or  */!isset($_POS
     $newemail=$_POST["email"];
     $newname=$_POST["name"];
     //Check if the password from the form match the password from the database
-    if($savedpass!=hash("sha256",$_POST["actualpass"])){
+    if(!password_verify($_POST["actualpass"],$savedpass)){
         $_SESSION["actualpasswordError"]=1;
         // echo "password error";
         header ("Location: ../userPanel.php");

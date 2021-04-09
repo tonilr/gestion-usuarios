@@ -56,33 +56,35 @@ if ($result->num_rows>0){
     <script src="js/javascriptFunctions.js"></script>
     <title>User Panel</title>
 </head>
-<body class="userPanel">
-    <h1>User panel</h1>
-    <h3><?php echo $data["username"];?></h3>
-    <form action="db/modifyUser.php" method="POST" class="signForm">
-        <!-- <label for="username">Username</label>
-        <input type="text" name="username" id="username" value="<?php echo $username ?>"> -->
-        <label for="email">Email</label>
-        <input type="text" name="email" id="email" value="<?php echo $email ?>">
-        <label for="name">Name</label>
-        <input type="text" name="name" id="name" value="<?php echo $name ?>">
-        <label for="newpass1">Change password: Minimun a lowercase letter, a capital (uppercase) letter, a number and minimun 8 characters</label>
-        <input type="password" name="newpass1" id="newpass1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="passwordField">
-        <label for="newpass2">Confirm new password</label>
-        <input type="password" name="newpass2" id="newpass2" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="passwordField">
-        <div id="togglePassword">
-                <input type="checkbox" name="togglePassword" onclick="togglepasswordsignup()">
-                <label for="togglePassword">Show passwords</label>
-        </div>
-        <label for="actualpass">Use your password to confirm changes</label>
-        <input type="password" name="actualpass" id="actualpass" required>
-        <input type="submit" value="Modify profile" class="boton">
-    </form>
-    <form action="db/deleteAccount.php" method="POST">
-        <input type="submit" value="Delete account"  class="botonDelete">
-    </form>
-    <form action="db/logout.php" method="POST" class="logoutForm">
-        <input type="submit" value="Logout">
-    </form>
+<body id="userPanel">
+    <section class="mainContent">
+        <h1>User panel</h1>
+        <h3 id="wellcomeMessage">Hello <?php echo $data["username"];?>!</h3>
+        <form action="db/modifyUser.php" method="POST" class="signForm">
+            <!-- <label for="username">Username</label>
+            <input type="text" name="username" id="username" value="<?php echo $username ?>"> -->
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email" value="<?php echo $email ?>">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" value="<?php echo $name ?>">
+            <label for="newpass1">Change password: Minimun a lowercase letter, a capital (uppercase) letter, a number and minimun 8 characters</label>
+            <input type="password" name="newpass1" id="newpass1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="passwordField">
+            <label for="newpass2">Confirm new password</label>
+            <input type="password" name="newpass2" id="newpass2" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="passwordField">
+            <div id="togglePassword">
+                    <input type="checkbox" name="togglePassword" onclick="togglepasswordsignup()">
+                    <label for="togglePassword">Show passwords</label>
+            </div>
+            <label for="actualpass">Use your password to confirm changes</label>
+            <input type="password" name="actualpass" id="actualpass" required>
+            <input type="submit" value="Modify profile" class="boton">
+        </form>
+        <form action="db/deleteAccount.php" method="POST">
+            <input type="submit" value="Delete account"  class="botonDelete">
+        </form>
+        <form action="db/logout.php" method="POST" class="signupForm">
+            <input type="submit" value="Logout" class="botonLogout">
+        </form>
+    </section>
 </body>
 </html>

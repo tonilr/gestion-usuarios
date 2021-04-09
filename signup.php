@@ -42,8 +42,8 @@ if (isset($_SESSION["connectionError"]) and $_SESSION["connectionError"]==1){
             <input type="text" name="email" id="email" placeholder="Your email account to receive notifications" maxlength="40" required>
             <label for="name">Name</label>
             <input type="text" name="name" id="name" placeholder="Your real name" maxlength="20" required>
-            <label for="password1">Password</label>
-            <input type="password" name="password1" class="passwordField" id="password1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Minimun a lowercase letter, a capital (uppercase) letter, a number and minimun 8 characters" required>
+            <label for="password1">Password: Minimun a lowercase letter, a capital (uppercase) letter, a number and minimun 8 characters</label>
+            <input type="password" name="password1" class="passwordField" id="password1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"required>
             <label for="password2">Confirm your password</label>
             <input type="password" name="password2" class="passwordField" id="password2"  required>
             <div id="togglePassword">
