@@ -50,6 +50,11 @@ body{
 #wellcomeMessage{
     margin-bottom:50px;
 }
+.messageWarning{
+    color:red;
+    align-self: center;
+    margin-top: -18px;
+}
 .signForm{
     display: flex;
     flex-direction: column;
@@ -106,7 +111,7 @@ input{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: -25px;
+    /* margin-top: -25px; */
 }
 .boton{
     margin:20px;

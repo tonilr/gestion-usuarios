@@ -28,6 +28,7 @@ if (isset($_SESSION["connectionError"]) and $_SESSION["connectionError"]==1){
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
     <script src="js/javascriptFunctions.js"></script>
+    <script src="js/validateForm.js"></script>
     <title>Sign Up</title>
 </head>
 <body>
@@ -36,16 +37,19 @@ if (isset($_SESSION["connectionError"]) and $_SESSION["connectionError"]==1){
         
         <form action="db/action-signup.php" method="post" class="signForm">
             <label for="username">User Name</label>
-            <input type="text" name="username" id="username" placeholder="Your username is the name that others users will see (max 20 characters)" maxlength="20" required>
-            
+            <input type="text" name="username" id="username" placeholder="Your username is the name that others users will see (max 20 characters)" maxlength="20" onblur=validate_username() required>
+            <div id="username_warning" class="messageWarning"></div>
             <label for="email">Email</label>
-            <input type="text" name="email" id="email" placeholder="Your email account to receive notifications" maxlength="40" required>
+            <input type="text" name="email" id="email" placeholder="Your email account to receive notifications" maxlength="40" onblur=validate_email() required>
+            <div id="email_warning" class="messageWarning"></div>
             <label for="name">Name</label>
             <input type="text" name="name" id="name" placeholder="Your real name" maxlength="20" required>
             <label for="password1">Password: Minimun a lowercase letter, a capital (uppercase) letter, a number and minimun 8 characters</label>
-            <input type="password" name="password1" class="passwordField" id="password1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"required>
+            <input type="password" name="password1" class="passwordField" id="password1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" onblur=validate_password() required>
+            <div id="password_warning" class="messageWarning"></div>
             <label for="password2">Confirm your password</label>
-            <input type="password" name="password2" class="passwordField" id="password2"  required>
+            <input type="password" name="password2" class="passwordField" id="password2" onblur=validate_password2() required>
+            <div id="password_warning2" class="messageWarning"></div>
             <div id="togglePassword">
                 <input type="checkbox" name="togglePassword" onclick="togglepasswordsignup()">
                 <label for="togglePassword">Show passwords</label>
