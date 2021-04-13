@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_COOKIE["userid"])){
+if (!isset($_SESSION["userid"])){
     header ("Location: index.php");
     die();
 }
@@ -17,12 +17,12 @@ if(isset($_SESSION["fieldMissing"]) and $_SESSION["fieldMissing"]==1){
     $_SESSION["fieldMissing"]=0;
 }
 if(isset($_SESSION["dataChanged"]) and $_SESSION["dataChanged"]==1){
-echo "<p class='confirmation'>You're data has been changed";
+echo "<p class='confirmation'>You're profile has been changed";
     $_SESSION["dataChanged"]=0;
 }
 include "db/databaseConnection.php";
 $conn=databaseConnection();
-$userid=$_COOKIE["userid"];
+$userid=$_SESSION["userid"];
 $sql="SELECT `username`,`email`,`name`,`status` FROM `users` WHERE `id`='$userid'";
 $result=$conn->query($sql);
 // print_r($resultado);

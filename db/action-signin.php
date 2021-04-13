@@ -9,7 +9,13 @@ $result=$conn->query($sql);
 if ($result->num_rows>0){
     $data=$result->fetch_assoc();
     if (password_verify($password,$data["password"]) and $username==$data["username"]){
-        setcookie("userid",$data["id"],time()+(60*60*24*365),"/");
+        //setcookie("userid",$data["id"],time()+(60*60*24*365),"/");
+        $_SESSION["userid"]=$data["id"];
+        if (isset($_POST["rememberUsername"])){
+            setcookie("username",$data["username"],time()+(60*60*24*365),"/");
+        }else{
+            setcookie("username","",time()-3600,"/");
+        }
         header ("Location: ../");
         die();
     }else{

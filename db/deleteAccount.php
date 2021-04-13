@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_COOKIE["userid"])){
+if (!isset($_SESSION["userid"])){
     header ("Location: ../index.php");
     die();
 }
@@ -10,7 +10,7 @@ if(isset($_SESSION["badDeletePassword"]) and $_SESSION["badDeletePassword"]==1){
 }
 if(isset($_POST["password"]) and $_POST["password"]!=NULL){
     echo $_POST["password"];
-    $userid=$_COOKIE["userid"];
+    $userid=$_SESSION["userid"];
     $pass=$_POST["password"];
     include "databaseConnection.php";
     $conn=databaseConnection();
@@ -18,15 +18,17 @@ if(isset($_POST["password"]) and $_POST["password"]!=NULL){
     $sql="SELECT password FROM users where id=$userid";
     $result=$conn->query($sql);
     $data=$result->fetch_assoc();
-    echo $pass."<br>";
-    echo $data["password"]."<br>";
+    // echo $pass."<br>";
+    // echo $data["password"]."<br>";
     //Check if the password is correct
     if(password_verify($pass,$data["password"])){
         $sql="DELETE FROM users WHERE id=$userid";
         $conn->query($sql);
         // echo "usuario borrado";
         //Delete the cookie and go back to index
-        setcookie("userid","",time()-3600,"/");
+        // setcookie("userid","",time()-3600,"/");
+        session_destroy();
+        session_start();
         $_SESSION["accountDeleted"]=1;
         header ("Location: ../index.php");
         die();

@@ -1,8 +1,8 @@
 <?php
 session_start();
 //Check if we have a cookie with the user id
-if (!isset($_COOKIE["userid"])){
-    header ("Location: index.php");
+if (!isset($_SESSION["userid"])){
+    header ("Location: ../index.php");
     die();
 }
 if (/* !isset($_POST["username"]) or $_POST["username"]==NULL or  */!isset($_POST["email"]) or $_POST["email"]==NULL or !isset($_POST["name"]) or $_POST["name"]==NULL or !isset($_POST["actualpass"]) or $_POST["actualpass"]==NULL){
@@ -13,7 +13,7 @@ if (/* !isset($_POST["username"]) or $_POST["username"]==NULL or  */!isset($_POS
     //Database connection
     include "databaseConnection.php";
     $conn=databaseConnection();
-    $userid=$_COOKIE["userid"];
+    $userid=$_SESSION["userid"];
     //Get the data from the user
     $sql="SELECT `id`,`username`,`email`,`name`,`password` FROM `users` WHERE `id`='$userid'";
     $result=$conn->query($sql);

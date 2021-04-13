@@ -24,16 +24,18 @@ if($username!=$_POST["username"] or $email!=$_POST["email"] or $name!=$_POST["na
     header ("Location: ../signup.php");
     die();
 }else{
+    //Conncet to database
     include "databaseConnection.php";
     $conn=databaseConnection();
     if ($_SESSION["connectionError"]==1){
         header ("Location: ../signup.php");
         die();
     }
+    //Save the password encrypted
     $userpassword=password_hash($_POST["password1"],PASSWORD_DEFAULT);
-    //Query
-    $sql="INSERT INTO users VALUES(NULL, '$username', '$email', '$name', '$userpassword', 1, current_timestamp())";
     //Query to insert new user
+    $sql="INSERT INTO users VALUES(NULL, '$username', '$email', '$name', '$userpassword', 1, current_timestamp())";
+    
     if ($conn->query($sql)){
         $conn->close();
         $_SESSION["userAdded"]=1;

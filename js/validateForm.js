@@ -2,10 +2,10 @@
 function validate_username(){
 	let username = document.getElementById("username").value;
 	if (username == "") {
-		document.getElementById("username_warning").innerHTML = "Username is necessary";
+		document.getElementById("usernameMessage").innerHTML = "Username is necessary";
 	}else{
-		document.getElementById("username_warning").innerHTML = "";
-		return true;
+		document.getElementById("usernameMessage").innerHTML = "";
+		check_username();
 	}
 }
 
@@ -14,7 +14,7 @@ function validate_email(){
 	// console.log(String.fromCharCode(46));
 	let email = document.getElementById("email").value;
 	if (email == "") {
-		document.getElementById("email_warning").innerHTML = "Email is necessary";
+		document.getElementById("emailMessage").innerHTML = "Email is necessary";
 	}else{
 		//Check if the email has a valid format
 		let characters = email.split("");
@@ -37,9 +37,10 @@ function validate_email(){
 		// console.log(at);
 		// console.log(dot);
 		if (at==1 && dot==1){
-			document.getElementById("email_warning").innerHTML = "";
+			document.getElementById("emailMessage").innerHTML = "";
+			check_email();
 		}else{
-			document.getElementById("email_warning").innerHTML = "Your email is not valid";
+			document.getElementById("emailMessage").innerHTML = "Your email is not valid";
 		}
 	}
 }
@@ -59,7 +60,7 @@ function validate_password(){
 			let nums  = 0; //count int numbers
 			let spec  = 0; //count special chars
 
-			//check if is contains a num or minus or mayus
+			//check if contains a num or minus or mayus
 			for (n = 0; n < characters.length; n++){ //check char by char
 				if(characters[n] == parseInt(characters[n])){ //if is num
 					nums++;
@@ -75,7 +76,7 @@ function validate_password(){
 			for (n = 0; n < characters.length; n++){ //check char by char
 				if(special_chars.includes(characters[n])) {
 					spec++;
-					minus = minus-spec; //the special character was previously previously counted as lowercase
+					minus = minus-spec; //the special character was previously counted as lowercase
 				}
 			}
 			//console.log("n: "+nums, "m: "+minus, "M: "+mayus, "S: "+spec, "T: "+characters.length); //shows password minus, mayus, nums and specialchars
@@ -90,25 +91,19 @@ function validate_password(){
 	}
 }
 
-//check if password is empty an shows an error and if pass and pass2 are different.
+//check if password is empty or if pass and pass2 are different.
 function validate_password2(){
 	let pass = document.getElementById("password1").value;
 	let pass2 = document.getElementById("password2").value;
 	if (pass2 == "") {
 		document.getElementById("password_warning2").innerHTML = "Password is necessary";
+		document.getElementById("pass2Field").value=false;
 	}else if (pass != pass2){
 		document.getElementById("password_warning2").innerHTML = "Passwords don't match";
+		document.getElementById("pass2Field").value=false;
 	}else{
 		document.getElementById("password_warning2").innerHTML = "";
+		document.getElementById("pass2Field").value=true;
 		return true;
-	}
-}
-
-//check the fields and return true or false. If true, the form will be submitted
-function validate_register() {
-	if (validate_username() && validate_password() && validate_password2()){
-		return true;
-	}else{
-		return false;
 	}
 }

@@ -1,8 +1,13 @@
 <?php
 session_start();
-if (isset($_COOKIE["userid"])){
+if (isset($_SESSION["userid"])){
     header ("Location: userPanel.php");
     die();
+}
+if (isset($_COOKIE["username"])){
+    $username=$_COOKIE["username"];
+}else{
+    $username="";
 }
 if (isset($_SESSION["userAdded"]) and $_SESSION["userAdded"]==1){
     echo "<p class='confirmation'>Account created correctly!</p>";
@@ -32,6 +37,7 @@ if (isset($_SESSION["accountDeleted"]) and $_SESSION["accountDeleted"]==1){
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
     <script src="js/javascriptFunctions.js"></script>
+    <script src="js/checkForm.js"></script>
     <title>Users Managment</title>
 </head>
 <body id="mainPage">
@@ -40,7 +46,11 @@ if (isset($_SESSION["accountDeleted"]) and $_SESSION["accountDeleted"]==1){
         
         <form action="db/action-signin.php" class="signForm" method="POST">
             <label for="username">Username</label>
-            <input type="text" name="username" id="username" required>
+            <input type="text" name="username" id="username" value="<?php echo $username;?>"required>
+            <div id="togglePassword">
+                <input type="checkbox" name="rememberUsername">
+                <label for="togglePassword">Remember username</label>
+            </div>
             <label for="password">Password</label>
             <input type="password" name="password" class="passwordField" required>
             <div id="togglePassword">
