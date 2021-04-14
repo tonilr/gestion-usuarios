@@ -5,7 +5,6 @@ if (!isset($_SESSION["userid"])){
     header ("Location: index.php");
     die();
 }
-print_r($_SESSION);
 //Some checks to show messages
 if(isset($_SESSION["actualpasswordError"]) and $_SESSION["actualpasswordError"]==1){
     echo "<p class='alert'>Your password is not correct";
@@ -73,8 +72,9 @@ if ($result->num_rows>0){
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="js/javascriptFunctions.js"></script>
-    <script src="js/validateForm.js"></script>
+    <script src="js/validateProfileForm.js"></script>
     <script src="js/checkForm.js"></script>
     <title>User Panel</title>
 </head>
@@ -96,17 +96,21 @@ if ($result->num_rows>0){
             <div id="emailMessage" class="messageWarning"></div>
             <label for="name">Name</label>
             <input type="text" name="name" id="name" value="<?php echo $name ?>">
-            <label for="newpass1">Change password <img src="img/question-mark.png" id="modalButton" onclick="modal()"></label>
+            <label for="password1">Change password <img src="img/question-mark.png" id="modalButton" onclick="modal()"></label>
             <div id="myModal" class="modal">    
                 <div class="modalContent"><span class="closeModal"></span><p>Minimun a lowercase letter, a capital (uppercase) letter, a number and minimun 8 characters</p></div>
             </div>
-            <input type="password" name="newpass1" id="newpass1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="passwordField">
-            <label for="newpass2">Confirm new password</label>
-            <input type="password" name="newpass2" id="newpass2" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="passwordField">
+            <input type="password" name="password1" id="password1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="passwordField" onblur="validate_password()">
+            <div id="password_warning" class="messageWarning"></div>
+            <input type="hidden" id="pass1Field" value="false">
+            <label for="password2">Confirm new password</label>
+            <input type="password" name="password2" id="password2" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="passwordField" onblur="validate_password2()">
+            <div id="password_warning2" class="messageWarning"></div>
             <div id="togglePassword">
                     <input type="checkbox" name="togglePassword" onclick="togglepasswordsignup()">
                     <label for="togglePassword">Show passwords</label>
             </div>
+            <input type="hidden" id="pass2Field" value="false">
             <label for="actualpass">Use your password to confirm changes</label>
             <input type="password" name="actualpass" id="actualpass" required>
             <input type="submit" value="Modify profile" class="boton">

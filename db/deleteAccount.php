@@ -30,6 +30,9 @@ if(isset($_POST["password"]) and $_POST["password"]!=NULL){
         session_destroy();
         session_start();
         $_SESSION["accountDeleted"]=1;
+        if (file_exists("../img/users/$userid")){
+            unlink("../img/users/$userid");
+        }
         header ("Location: ../index.php");
         die();
     }else{

@@ -53,11 +53,10 @@ if (!isset($_POST["email"]) or $_POST["email"]==NULL or !isset($_POST["name"]) o
     }
 
     //Check if the user wants to change the password
-    if (isset($_POST["newpass1"]) and $_POST["newpass1"]!=NULL and isset($_POST["newpass2"]) and $_POST["newpass2"]!=NULL){
+    if (isset($_POST["password1"]) and $_POST["password1"]!=NULL and isset($_POST["password2"]) and $_POST["password2"]!=NULL){
         //Check if the new passwords match
-        $newpass=hash("sha256",$_POST["newpass1"]);
-        $newpass2=hash("sha256",$_POST["newpass2"]);
-        if($newpass!=$newpass2){
+        $newpass=password_hash($_POST["password1"],PASSWORD_DEFAULT);
+        if(!password_verify($_POST["password2"],$newpass)){
             $_SESSION["passwordsMissmatch"]=1;
             header ("Location: ../userPanel.php");
             die();

@@ -28,6 +28,10 @@ if (isset($_SESSION["status"]) and $_SESSION["status"]==0){
     echo "<p class='alert'>Your account has been suspended</p>";
     session_destroy();
 }
+if (isset($_SESSION["accountDeleted"]) and $_SESSION["accountDeleted"]==1){
+    echo "<p class='alert'>Your account has been deleted</p>";
+    session_destroy();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

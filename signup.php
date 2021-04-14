@@ -26,9 +26,9 @@ if (isset($_SESSION["connectionError"]) and $_SESSION["connectionError"]==1){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="img/favicon.png" rel="icon" type="image/png"/>
     <link rel="stylesheet" href="css/style.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="js/javascriptFunctions.js"></script>
     <script src="js/validateForm.js"></script>
     <script src="js/checkForm.js"></script>
