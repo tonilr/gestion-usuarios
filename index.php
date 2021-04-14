@@ -1,29 +1,32 @@
 <?php
+//Check if the user has a Session initialized
 session_start();
 if (isset($_SESSION["userid"])){
     header ("Location: userPanel.php");
     die();
 }
+//Check if the user wants to remember his username
 if (isset($_COOKIE["username"])){
     $username=$_COOKIE["username"];
 }else{
     $username="";
 }
+//Some checks to show messages
 if (isset($_SESSION["userAdded"]) and $_SESSION["userAdded"]==1){
     echo "<p class='confirmation'>Account created correctly!</p>";
-    $_SESSION["userAdded"]=0;
+    session_destroy();
 }
 if (isset($_SESSION["errorAdding"]) and $_SESSION["errorAdding"]==1){
     echo "<p class='alert'>There was an error adding the user account!</p>";
-    $_SESSION["errorAdding"]=0;
+    session_destroy();
 }
 if (isset($_SESSION["badCredentials"]) and $_SESSION["badCredentials"]==1){
     echo "<p class='alert'>Username or password incorrect</p>";
-    $_SESSION["badCredentials"]=0;
+    session_destroy();
 }
-if (isset($_SESSION["accountDeleted"]) and $_SESSION["accountDeleted"]==1){
-    echo "<p class='alert'>Your account has been deleted</p>";
-    $_SESSION["accountDeleted"]=0;
+if (isset($_SESSION["status"]) and $_SESSION["status"]==0){
+    echo "<p class='alert'>Your account has been suspended</p>";
+    session_destroy();
 }
 ?>
 <!DOCTYPE html>

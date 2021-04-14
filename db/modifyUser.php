@@ -5,7 +5,7 @@ if (!isset($_SESSION["userid"])){
     header ("Location: ../index.php");
     die();
 }
-if (/* !isset($_POST["username"]) or $_POST["username"]==NULL or  */!isset($_POST["email"]) or $_POST["email"]==NULL or !isset($_POST["name"]) or $_POST["name"]==NULL or !isset($_POST["actualpass"]) or $_POST["actualpass"]==NULL){
+if (!isset($_POST["email"]) or $_POST["email"]==NULL or !isset($_POST["name"]) or $_POST["name"]==NULL or !isset($_POST["actualpass"]) or $_POST["actualpass"]==NULL){
     $_SESSION["fieldMissing"]=1;
     header ("Location: ../userPanel.php");
     die();
@@ -35,6 +35,23 @@ if (/* !isset($_POST["username"]) or $_POST["username"]==NULL or  */!isset($_POS
         header ("Location: ../userPanel.php");
         die();
     }
+    //Check if the user wants to change the avatar
+    if (file_exists($_FILES["avatar"]["tmp_name"])){
+        //Save the size and type
+        $filesize = $_FILES["avatar"]["size"];
+        $filetype = $_FILES["avatar"]["type"];
+        //Check the type and size of the file
+        if(( $filesize<204800) and ( strpos($filetype,"jpg") or strpos($filetype,"jpeg") or strpos($filetype,"png"))){
+            move_uploaded_file($_FILES["avatar"]["tmp_name"],"../img/users/$userid");
+        }else{
+            $_SESSION["avatarMessage"] = 1; 
+        }
+    }
+    //Check if the user has upload a larger file
+    if ($_FILES["avatar"]["error"]==2){
+        $_SESSION["avatarMessage"] = 1;
+    }
+
     //Check if the user wants to change the password
     if (isset($_POST["newpass1"]) and $_POST["newpass1"]!=NULL and isset($_POST["newpass2"]) and $_POST["newpass2"]!=NULL){
         //Check if the new passwords match

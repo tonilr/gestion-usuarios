@@ -16,11 +16,7 @@ if (isset($_SESSION["connectionError"]) and $_SESSION["connectionError"]==1){
     echo "<p class='alert'>There was an error creating the account</p>";
     $_SESSION["connectionError"]=0;
 }
-if(isset($_POST["username"])){
-    $username=$_POST["username"];
-}else{
-    $username="";
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,7 +41,7 @@ if(isset($_POST["username"])){
         
         <form action="db/action-signup.php" method="post" class="signupForm">
             <label for="username">User Name</label>
-            <input type="text" name="username" id="username" placeholder="Your username is the name that others users will see (max 20 characters)" value="<?php echo $username;?>"maxlength="20" onblur=validate_username() required>
+            <input type="text" name="username" id="username" placeholder="Your username is the name that others users will see (max 20 characters)" maxlength="20" onblur=validate_username() required>
             <!-- Variable to check the validation of the username -->
             <input type="hidden" id="usernameField" value="false">
             <div id="usernameMessage" class="messageWarning"></div>
@@ -55,9 +51,12 @@ if(isset($_POST["username"])){
             <input type="hidden" id="emailField" value="false">
             <div id="emailMessage" class="messageWarning"></div>
             <label for="name">Name</label>
-            <input type="text" name="name" id="name" placeholder="Your real name" maxlength="20" required>
-            <label for="password1">Password<img src="img/question-mark.png"></label>
-            <input type="password" name="password1" class="passwordField" id="password1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" onblur=validate_password() required>
+            <input type="text" name="name" id="name" placeholder="Your real name (Optional)" maxlength="20" required>
+            <label for="password1">Password <img src="img/question-mark.png" id="modalButton" onclick="modal()"></label>
+            <div id="myModal" class="modal">    
+                <div class="modalContent"><span class="closeModal"></span><p>Minimun a lowercase letter, a capital (uppercase) letter, a number and minimun 8 characters</p></div>
+            </div>
+            <input type="password" name="password1" class="passwordField" id="password1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" onblur=validate_password() placeholder="Create your password" required>
             <input type="hidden" id="pass1Field" value="false">
             <div id="password_warning" class="messageWarning"></div>
             <label for="password2">Confirm your password</label>

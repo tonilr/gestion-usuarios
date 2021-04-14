@@ -53,7 +53,10 @@ function checkFields(){
     //Check the 
     $username=document.getElementById("usernameField").value;
     $email=document.getElementById("emailField").value;
-    if ($email=="false" || $username=="false"){
+    $pass1=document.getElementById("pass1Field").value;
+    $pass2=document.getElementById("pass2Field").value;
+    $
+    if ($email=="false" || $username=="false" || $pass1=="false" || $pass2=="false"){
         document.getElementById("sendButton").type="button";
     }else{
         document.getElementById("sendButton").type="submit";

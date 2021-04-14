@@ -50,15 +50,16 @@ function validate_password(){
 	let pass = document.getElementById("password1").value;
 	if (pass == "") {
 		document.getElementById("password_warning").innerHTML = "Password is necessary";
+		document.getElementById("pass1Field").value=false;
 	}else{
 		if(pass.length < 8) { //minimum 8 chars
 			document.getElementById("password_warning").innerHTML = "8 characters minimum";
+			document.getElementById("pass1Field").value=false;
 		}else{
 			let characters = pass.split(""); //array chars
 			let mayus = 0; //count Upper chars
 			let minus = 0; //count lower chars
 			let nums  = 0; //count int numbers
-			let spec  = 0; //count special chars
 
 			//check if contains a num or minus or mayus
 			for (n = 0; n < characters.length; n++){ //check char by char
@@ -71,21 +72,14 @@ function validate_password(){
 				}
 			}
 
-			//check if exist some special char
-			special_chars = "[-’/`~!¡#*$@_%+=.,^&(){}[|;:<>?¿]"; //special chars allowed
-			for (n = 0; n < characters.length; n++){ //check char by char
-				if(special_chars.includes(characters[n])) {
-					spec++;
-					minus = minus-spec; //the special character was previously counted as lowercase
-				}
-			}
-			//console.log("n: "+nums, "m: "+minus, "M: "+mayus, "S: "+spec, "T: "+characters.length); //shows password minus, mayus, nums and specialchars
-
-			if (nums != 0 && minus != 0 && mayus != 0 && spec != 0){ //check if have nums, minus, mayus and specs
+			if (nums != 0 && minus != 0 && mayus != 0){ //check if have nums, minus and mayus
 				document.getElementById("password_warning").innerHTML = "";
-				return true
-			}else{ //shows error
-				document.getElementById("password_warning").innerHTML = "Password needs uppercase, lowercase, numbers and special chars";
+				document.getElementById("pass1Field").value=true;
+				//If the password is valid, trigger the check of password 2
+				validate_password2();
+			}else{ //show error
+				document.getElementById("password_warning").innerHTML = "Password needs uppercase, lowercase and numbers";
+				document.getElementById("pass1Field").value=false;
 			}
 		}
 	}
@@ -104,6 +98,5 @@ function validate_password2(){
 	}else{
 		document.getElementById("password_warning2").innerHTML = "";
 		document.getElementById("pass2Field").value=true;
-		return true;
 	}
 }

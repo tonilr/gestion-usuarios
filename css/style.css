@@ -48,9 +48,7 @@ body{
     padding: 40px 20px 40px 20px;
     background-color: ghostwhite;
 }
-#wellcomeMessage{
-    margin-bottom:50px;
-}
+
 .messageWarning{
     color:red;
     align-self: center;
@@ -58,6 +56,7 @@ body{
 }
 .signForm{
     display: flex;
+    width: 100%;
     flex-direction: column;
     align-content: center;
 }
@@ -101,6 +100,10 @@ input[type="text"],input[type="password"]{
 }
 input{
     font-family: 'Montserrat', sans-serif;
+}
+.inputs{
+    align-self: center;
+    margin-bottom: 20px;
 }
 .alert{
     width: 60%;
@@ -157,6 +160,54 @@ input{
     color: green;
     text-align: center;
     text-decoration: none;
+}
+.userAvatar{
+    position:relative;
+    width: 200px;
+    border:2px solid black;
+    border-radius: 300px;
+    height: 200px;
+    object-fit: cover;
+}
+
+
+.avatarContainer{
+    position: relative;
+    width: 200px;
+    align-self: center;
+}
+.modal{
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+.modalContent {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+  }
+  /* The Close Button */
+.closeModal {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.closeModal:hover, .closeModal:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
 }
 /* #sendButton{
     disabled:true;

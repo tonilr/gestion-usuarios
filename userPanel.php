@@ -1,9 +1,12 @@
 <?php
 session_start();
+//Check if there's no session initilized
 if (!isset($_SESSION["userid"])){
     header ("Location: index.php");
     die();
 }
+print_r($_SESSION);
+//Some checks to show messages
 if(isset($_SESSION["actualpasswordError"]) and $_SESSION["actualpasswordError"]==1){
     echo "<p class='alert'>Your password is not correct";
     $_SESSION["actualpasswordError"]=0;
@@ -20,27 +23,44 @@ if(isset($_SESSION["dataChanged"]) and $_SESSION["dataChanged"]==1){
 echo "<p class='confirmation'>You're profile has been changed";
     $_SESSION["dataChanged"]=0;
 }
+if(isset($_SESSION["avatarMessage"]) and $_SESSION["avatarMessage"]==1){
+echo "<p class='alert'>The file uploaded is not valid";
+    $_SESSION["avatarMessage"]=0;
+}
+//Connection to the database
 include "db/databaseConnection.php";
 $conn=databaseConnection();
 $userid=$_SESSION["userid"];
+//Query to get the user information in the database
 $sql="SELECT `username`,`email`,`name`,`status` FROM `users` WHERE `id`='$userid'";
 $result=$conn->query($sql);
-// print_r($resultado);
+//Check if the query has a result
 if ($result->num_rows>0){
+    //Save the data
     $data=$result->fetch_assoc();
+    //Close the connection, we don't need it anymore
     $conn->close();
-    // print_r($datos);
+    //Check if the account is suspended (status=0)
     $status=$data["status"];
     if ($status==0){
-        $_SESSION["status"]=0;
-        setcookie("userid","",time()-3600,"/");
+        //Delete the session to delete $_SESSION["userid]
         session_destroy();
+        session_start();
+        //Set the status
+        $_SESSION["status"]=0;
         header ("Location: index.php");
         die();
     }
+    //Save the data from database
     $username=$data["username"];
     $email=$data["email"];
     $name=$data["name"];
+    //Check if the user has profile picture
+    if (file_exists("img/users/$userid")){
+        $userimg=$userid;
+    }else{
+        $userimg="000";
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -54,20 +74,32 @@ if ($result->num_rows>0){
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
     <script src="js/javascriptFunctions.js"></script>
+    <script src="js/validateForm.js"></script>
+    <script src="js/checkForm.js"></script>
     <title>User Panel</title>
 </head>
 <body id="userPanel">
     <section class="mainContent">
         <h1>User panel</h1>
         <h3 id="wellcomeMessage">Hello <?php echo $data["username"];?>!</h3>
-        <form action="db/modifyUser.php" method="POST" class="signForm">
-            <!-- <label for="username">Username</label>
-            <input type="text" name="username" id="username" value="<?php echo $username ?>"> -->
+        
+        <form action="db/modifyUser.php" method="POST" class="signForm" enctype="multipart/form-data">
+            <div class="avatarContainer">
+                <img src="img/users/<?php echo $userimg;?>" alt="profile picture" class="userAvatar">
+            </div>
+            <label for="avatar">Change picture (PNG and JPG pictures. 200KB max.)</label>
+            <input type="hidden" name="MAX_FILE_SIZE" value="204800">
+            <input type="file" name="avatar" id="avatar" class="inputs">
+            <div id="avatarMessage" class="messageWarning"></div>
             <label for="email">Email</label>
-            <input type="text" name="email" id="email" value="<?php echo $email ?>">
+            <input type="text" name="email" id="email" value="<?php echo $email ?>" onchange="validate_email()">
+            <div id="emailMessage" class="messageWarning"></div>
             <label for="name">Name</label>
             <input type="text" name="name" id="name" value="<?php echo $name ?>">
-            <label for="newpass1">Change password: Minimun a lowercase letter, a capital (uppercase) letter, a number and minimun 8 characters</label>
+            <label for="newpass1">Change password <img src="img/question-mark.png" id="modalButton" onclick="modal()"></label>
+            <div id="myModal" class="modal">    
+                <div class="modalContent"><span class="closeModal"></span><p>Minimun a lowercase letter, a capital (uppercase) letter, a number and minimun 8 characters</p></div>
+            </div>
             <input type="password" name="newpass1" id="newpass1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="passwordField">
             <label for="newpass2">Confirm new password</label>
             <input type="password" name="newpass2" id="newpass2" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="passwordField">
