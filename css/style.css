@@ -191,10 +191,11 @@ input{
 }
 .modalContent {
     background-color: #fefefe;
-    margin: auto;
+    margin: 20% auto auto auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
+    text-align: center;
   }
   /* The Close Button */
 .closeModal {

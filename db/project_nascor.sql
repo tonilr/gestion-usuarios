@@ -41,9 +41,6 @@ CREATE TABLE `users` (
 -- Volcado de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `name`, `password`, `status`, `date_signup`) VALUES
-(1, 'test', 'letetetetni@gmail.com', 'tetetetet', '5ced5701b792cc157236f02c445471e076e14f73bae02afb3fb40e0c98b38387', 1, '2021-04-07 14:01:31'),
-(2, 'tetstststst', 'tstststni@outlook.com', 'tststs', '5ced5701b792cc157236f02c445471e076e14f73bae02afb3fb40e0c98b38387', 1, '2021-04-07 14:08:52');
 
 --
 -- Índices para tablas volcadas
